@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tanzanian Shilling Notes Calculator</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f5f5;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(15, 206, 8, 0.1);
+}
+ input{
+    width:70%;
+    padding:10px;
+    margin-bottom:12px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: #f4f4f4;
+    border-color:#80FF00 ;
+
+ }
+  input::placeholder {
+    color: #33df10;
+
+  }
+
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #33df10;
+}
+
+#result {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse:border-bottom;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #41a73d;
+}
+
+th {
+    background-color: #17e756;
+}
+
+img {
+    display: block;
+    margin: 20px auto;
+    max-width: 70%;
+    max-height: 50%;;
+    align-content: center;
+    border-radius: 20%;
+}
+.footer{
+    text-align: center;
+    color:#17e756;
+    padding:10px;
+    position :fixed;
+    width:100%;
+    background-color: #f4f4f4;
+    border-top:1px solid #ddd;
+}
+label{
+    color: #33df10;
+    
+}
+
+
+
+</style>
+</head>
+<body>
+<div class="container">
+<h1> Notes Calculator</h1>
+<img src="logo.png" alt="Tanzanian Shilling Notes" />
+<label for="amount">Enter Amount (TZS):</label>
+<input type="number" id="amount" placeholder="Enter amount...">
+<button onclick="calculateNotes()">Calculate Notes</button>
+<div id="result"></div>
+</div>
+<div class="footer"><marquee><h2> 
+<p>&copy; 2024 MSANGI JR. All Rights Reserved.</p>
+</footer></h2>
+ </marquee></div>
+<script>
+function calculateNotes() {
+    var amount = parseInt(document.getElementById('amount').value);
+    var notes = [10000, 5000, 2000, 1000,500,200,100,50,20,10,5];
+    var result = '<table><tr><th>Amount</th><th>Notes</th></tr>';
+
+    for (var i = 0; i < notes.length; i++) {
+        var noteCount = Math.floor(amount / notes[i]);
+        if (noteCount > 0) {
+            result += '<tr><td>' + notes[i] + ' TZS</td><td>' + noteCount + '</td></tr>';
+            amount %= notes[i];
+        }
+    }
+
+    if (amount > 0) {
+        result += '<tr><td>Remaining</td><td>' + amount + ' Cent</td></tr>';
+    }
+
+    result += '</table>';
+
+    document.getElementById('result').innerHTML = result;
+}
+</script>
+</body>
+</html>
